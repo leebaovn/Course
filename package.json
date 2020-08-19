@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js",
-    "watch": "node-sass --watch src/resources/scss/ -o src/public/css/"
+    "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
+    "beautiful": "lint-staged"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +17,20 @@
     "joi": "^17.2.0",
     "mongoose": "^5.10.0"
   },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 2 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "morgan": "^1.10.0",
     "node-sass": "^4.14.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   }
 }
