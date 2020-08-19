@@ -2,6 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const path = require('path');
+const db = require('./config/db');
+
+//Connect mongodb
+db.connect();
 
 const route = require('./routes');
 
@@ -21,7 +25,7 @@ app.engine(
   }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //HTTP Logging
 app.use(morgan('combined'));
