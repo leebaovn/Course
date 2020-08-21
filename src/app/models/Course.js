@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
-const { string } = require('joi');
+const slug = require('mongoose-slug-generator');
 const Schema = mongoose.Schema;
+
+//apply plugin
+mongoose.plugin(slug);
 
 const CourseSchema = new Schema(
   {
@@ -9,6 +12,7 @@ const CourseSchema = new Schema(
     image: { type: String, required: true },
     videoId: { type: String },
     level: { type: String, default: 'Beginner' },
+    slug: { type: String, slug: 'name', unique: true },
   },
   {
     timestamps: true,
